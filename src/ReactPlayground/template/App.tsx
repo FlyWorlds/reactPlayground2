@@ -6,7 +6,7 @@ function App() {
     return(
         <>
             <h1>
-                hello world
+                react Editor
             </h1>
             <div className="card">
                 <button onClick={()=>setCount(count=>count+1)}>

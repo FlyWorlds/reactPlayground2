@@ -2,14 +2,14 @@ import { useContext, useEffect, useState } from "react"
 import { PlaygroundContext } from "../../../PlaygroundContext"
 
 import { FileNameItem } from "./FileNameItem"
-import { FileNameItem2 } from "./FileNameItem"
 import styles from './index.module.scss'
+
 export default function FileNameList() {
-    const {
-        files,
-        removeFile,
-        addFile,
-        updateFileName,
+    const { 
+        files, 
+        // removeFile, 
+        // addFile, 
+        updateFileName, 
         selectedFileName,
         setSelectedFileName
     } = useContext(PlaygroundContext)
@@ -20,19 +20,23 @@ export default function FileNameList() {
         setTabs(Object.keys(files))
     }, [files])
 
-    return <div className={styles.tabs}>
-        <div>
+    const handleEditComplete = (name: string, prevName: string) => {
+        updateFileName(prevName, name);
+        setSelectedFileName(name);
+    }
 
-        </div>
+    return <div className={styles.tabs}>
         {
             tabs.map((item, index) => (
-                    <FileNameItem
-                        key={index+item}
-                        value={item}
-                        isprops='2222'
-                        actived={selectedFileName === item}
-                        onClick={() => setSelectedFileName(item)}>
-                    </FileNameItem>
+                <FileNameItem 
+                    key={item + index}
+                    isprops={true}  // 添加 isprops 属性  
+                    value={item} 
+                    actived={selectedFileName === item} 
+                    onClick={() => setSelectedFileName(item)}
+                    onEditComplete={(name: string) => handleEditComplete(name, item)}
+                >
+                </FileNameItem>
             ))
         }
     </div>
