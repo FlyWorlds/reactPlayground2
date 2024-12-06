@@ -23,7 +23,6 @@ export default function Editor(props: Props) {
     } = props;
 
     const handleEditorMount: OnMount = (editor, monaco) => {
-
         editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyJ, () => {
             editor.getAction('editor.action.formatDocument')?.run()
             // let actions = editor.getSupportedActions().map((a) => a.id);
@@ -40,6 +39,7 @@ export default function Editor(props: Props) {
         })
 
         editor.onDidChangeModelContent(() => {
+
             ata(editor.getValue());
         });
 

@@ -26,20 +26,13 @@ export default function FileNameList() {
         </div>
         {
             tabs.map((item, index) => (
-                <>
-                    <FileNameItem2 index={index} >
-
-                    </FileNameItem2>
                     <FileNameItem
-                        key={item + index}
+                        key={index+item}
                         value={item}
                         isprops='2222'
                         actived={selectedFileName === item}
                         onClick={() => setSelectedFileName(item)}>
                     </FileNameItem>
-
-                </>
-
             ))
         }
     </div>
