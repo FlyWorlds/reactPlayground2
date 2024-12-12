@@ -4,8 +4,9 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./index.module.scss";
 
 export interface FileNameItemProps {
-  // 这里应该去修改 files 里的文件名
+  // 这里应该去修改 files 里的文件名22
   onEditComplete: (name: string) => void;
+
   isprops: boolean;
   value: string;
   actived: boolean;
