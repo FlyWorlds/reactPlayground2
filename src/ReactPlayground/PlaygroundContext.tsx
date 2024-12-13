@@ -43,10 +43,20 @@ export const PlaygroundProvider = (props: PropsWithChildren) => {
         setFiles({...files });
     }
     const updateFileName = (oldFieldName: string, newFieldName: string) => {
-        if(!oldFieldName||newFieldName=='undefined'||newFieldName==null)
-        return
+        if(!files[oldFieldName]||newFieldName=='undefined'||newFieldName==null) return;
         //结构复制 value为变量，对应files  oldFieldName为(['key']):value
         const {[oldFieldName]:value, ...rest} = files;
+        const newFile = {
+            [newFieldName]:{
+                ...value,
+                language: fileName2Language(newFieldName),
+                name: newFieldName
+            }
+        }
+        setFiles({
+            ...rest,
+            ...newFile
+        })
     }
     return (
         <PlaygroundContext.Provider value={{
